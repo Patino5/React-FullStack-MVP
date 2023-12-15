@@ -54,15 +54,50 @@ button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+
+.navbar {
+  display: flex;
+  width: 100vw;
+  border-bottom: 1px solid;
+  justify-content: space-between;
+  padding: 0 1em;
+
+}
+
+.navItems button {
+ font-size: 1.2rem;
+  margin: 2.5em 0 2.5em 1em;
+}
+
+.hero {
+  height: 80vh;
+  display: grid;
+  place-content: center;
+  background-image: url(./assets/course-background.png);
+  background-size: cover;
+}
+
+.hero button {
+  margin: auto;
+  width: 50%;
+}
+
+.container {
+  width: 70vw;
+  display: flex;
+  margin: auto;
+
+}
+
+.clubCard {
+  margin-top: 2em;
+  width: 25vw;
+  border: 1px solid;
+  border-radius: 2em;
+  padding: 1em
+}
+
+.clubCard:hover {
+  border-color: #747bff;
+  cursor: pointer;
 }
