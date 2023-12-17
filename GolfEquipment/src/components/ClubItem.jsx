@@ -7,10 +7,7 @@ const ClubItem = ({club, getSingleClub}) => {
 
     return (
         <div className="clubCard" id={club.id} onClick={handleClick}>
-            <h1>Club Name</h1>
-            <h2>Name: {club.clubName}</h2>
-            <p>Type: {club.clubType}</p>
-            <p>Brand: {club.brandName}</p>
+            <h1>{club.club_type}</h1>
         </div>
     )
 }
