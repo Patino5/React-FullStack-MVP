@@ -1,14 +1,18 @@
 import ClubItem from "./ClubItem"
 
 const Clubs = ({clubs, getSingleClub}) => {
-    return clubs.map((club) => (
-        <div className="container">
-            <ClubItem club={club}
-             key={club.id}
-             getSingleClub={getSingleClub} />
-             
-        </div>
-    )) 
+    return (
+    <div className="container">
+          {clubs.map((club) => (
+            <div key={club.id}>
+                <ClubItem club={club} getSingleClub={getSingleClub} />
+    
+            </div>
+        ))}
+
+    </div>
+
+    )
 }
 
 export default Clubs
