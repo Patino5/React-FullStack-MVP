@@ -1,38 +1,57 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Clubs from './components/Clubs'
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
 import Hero from './components/Hero'
 import ClubForm from './components/ClubForm'
+import SingleClub from './components/SingleClub'
 
 function App() {
   const [loading, setLoading] = useState(true)
   const [singleClub, setSingleClub] = useState(null)
-  const [clubs, setClubs] = useState([
-    {
-      id: 1,
-      clubName: 'Driver',
-      clubType: 'Driver',
-      brandName: 'TaylorMade'
-    },
-    {
-      id: 2,
-      clubName: '3 Wood',
-      clubType: 'Wood',
-      brandName: 'Callaway'
-    },
-    {
-      id: 3,
-      clubName: '7 Iron',
-      clubType: 'Iron',
-      brandName: 'Titleist'
-    },
-  ])
+  const [clubs, setClubs] = useState([])
+  const [showForm, setShowForm] = useState(false)
+
+  const handleAddClub = () => {
+
+  }
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await fetch('http://localhost:3000/api/clubs')
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const data = await res.json();
+        setClubs(data);
+        setLoading(false); 
+      } catch (error) {
+        console.error('Error fetching data:', error);
+        setLoading(false); 
+      }
+    };
+  
+    fetchData();
+  }, []);
+  
+  
+  const getSingleClub = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:3000/api/clubs/${id}`);
+      if (!res.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await res.json();
+      setSingleClub(data);
+    } catch (error) {
+      console.error('Error fetching single club data:', error);
+    }
+  };
   
 
-  const getSingleClub = async (id) => {
-
-    setSingleClub(id)
+  const clearSingleClub = () => {
+    setSingleClub(null)
   }
 
 
@@ -43,7 +62,7 @@ function App() {
 
   if (!loading && singleClub) {
     return (
-      <SingleClub singleClub={singleClub} />
+      <SingleClub singleClub={singleClub} clearSingleClub={clearSingleClub} />
     )
   }
 
@@ -54,8 +73,10 @@ function App() {
     <>
     <Navbar />
     <Hero />
-    <h1>Clubs Section</h1>
+    <h1 id="clubsSection">Clubs Section</h1>
     <Clubs clubs={clubs} getSingleClub={getSingleClub} />
+
+    {showForm && <ClubForm onAddClub={handleAddClub} />}
     </>
   )
 }
