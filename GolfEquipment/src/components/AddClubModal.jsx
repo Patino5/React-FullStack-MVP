@@ -1,14 +1,7 @@
 import ClubForm from "./ClubForm";
-import EditClubModal from "./EditClubModal";
 import HomeButton from "./HomeButton";
 
-const AddClubModal = ({ onClose, setClubs, singleClub }) => {
-
-    if(singleClub) {
-        return (
-            <EditClubModal />
-        )
-    }
+const AddClubModal = ({ onClose, setClubs }) => {
 
     return (
         <div className="modal-overlay">

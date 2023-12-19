@@ -41,7 +41,7 @@ function App() {
     };
   
     fetchData();
-  }, []);
+  }, [clubs, singleClub]);
   
   
   const getSingleClub = async (id) => {

@@ -25,7 +25,7 @@ const EditClubModal = ({ onClose, setClubs, singleClub, setEditForm }) => {
     
         if (response.ok){
             const editedClub = await response.json()
-            setClubs((prevClubs) => [...prevClubs, editedClub])
+            // setClubs((prevClubs) => [...prevClubs, editedClub])
             alert(`${clubName} modified`)
             setEditForm(false)
         } 
