@@ -4,7 +4,7 @@ import cors from 'cors'
 import dotenv from 'dotenv'
 
 dotenv.config()
-// const dbString = process.env.DATABASE_URL
+const dbString = process.env.DATABASE_URL
 const PORT = process.env.PORT
 
 
