@@ -9,7 +9,7 @@ const ClubForm = ({ setClubs }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3002/api/clubs', {
+      const response = await fetch('/api/clubs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

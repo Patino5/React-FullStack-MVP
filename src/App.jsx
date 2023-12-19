@@ -27,7 +27,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3002/api/clubs')
+        const res = await fetch('/api/clubs')
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -46,7 +46,7 @@ function App() {
   
   const getSingleClub = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3002/api/clubs/${id}`);
+      const res = await fetch(`/api/clubs/${id}`);
       if (!res.ok) {
         throw new Error('Network response was not ok');
       }
@@ -63,7 +63,7 @@ function App() {
 
   const deleteClub = async (id) => {
     try {
-        const res = await fetch(`http://localhost:3002/api/clubs/${id}` , {
+        const res = await fetch(`/api/clubs/${id}` , {
             method: 'DELETE',
         })
         setClubs(clubs.filter(club => club.id !== id))
