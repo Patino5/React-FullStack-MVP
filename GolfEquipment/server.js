@@ -1,9 +1,18 @@
 import express from 'express'
 import pkg from 'pg'
 import cors from 'cors'
+import dotenv from 'dotenv'
+
+dotenv.config()
+// const dbString = process.env.DATABASE_URL
+const PORT = process.env.PORT
 
 
 const { Pool } = pkg;
+
+// const pool = new Pool ({
+//   connectionString: dbString
+// })
 
 const pool = new Pool ({
     user: 'ryanpatino',
@@ -12,7 +21,6 @@ const pool = new Pool ({
     password: 'Ryan',
     port: 5432,
 })
-const PORT = 3000
 
 const app = express()
 
