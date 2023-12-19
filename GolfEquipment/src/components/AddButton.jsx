@@ -1,6 +1,6 @@
-const AddButton = () => {
+const AddButton = ({onAddClub}) => {
     const handleClick = () => {
-        console.log('Add Club Form');
+        onAddClub()
         
     }
 

@@ -1,10 +1,10 @@
-const HomeButton = ({clearSingleClub}) => {
+const HomeButton = ({onClose}) => {
 
         const handleClick = () => {
-            clearSingleClub()
+            onClose()
         }
 
-    return <button onClick={handleClick}>Home</button>
+    return <button onClick={handleClick}>CLOSE</button>
 }
 
 export default HomeButton

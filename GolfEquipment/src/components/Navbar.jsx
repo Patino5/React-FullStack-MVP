@@ -1,7 +1,6 @@
 import AddButton from "./AddButton"
-import Button from "./AddButton"
 
-const Navbar = () => {
+const Navbar = ({onAddClub}) => {
 
     const scrollToClubs = () => {
         const clubSection = document.querySelector('#clubsSection')
@@ -13,7 +12,7 @@ const Navbar = () => {
             <h1>My Club Caddie</h1>
             <span className="navItems">
                 <button onClick={scrollToClubs}>My Clubs</button>
-                <AddButton />
+                <AddButton onAddClub={onAddClub} />
             </span>
         </div>
     )

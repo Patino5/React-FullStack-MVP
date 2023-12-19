@@ -3,8 +3,9 @@ import Clubs from './components/Clubs'
 import Navbar from './components/Navbar'
 import Loading from './components/Loading'
 import Hero from './components/Hero'
-import ClubForm from './components/ClubForm'
+import EditClubModal from './components/EditClubModal'
 import SingleClub from './components/SingleClub'
+import AddClubModal from './components/AddClubModal'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -12,8 +13,14 @@ function App() {
   const [clubs, setClubs] = useState([])
   const [showForm, setShowForm] = useState(false)
 
-  const handleAddClub = () => {
 
+  const onAddClub = () => {
+    setShowForm(true)
+  }
+
+  const onClose = () => {
+    setShowForm(false)
+    setSingleClub(null)
   }
 
   useEffect(() => {
@@ -48,35 +55,53 @@ function App() {
       console.error('Error fetching single club data:', error);
     }
   };
-  
 
-  const clearSingleClub = () => {
-    setSingleClub(null)
+  const editClub = async (id) => {
+    console.log(id);
+    setShowForm(true)
+
   }
 
+  const deleteClub = async (id) => {
+    try {
+        const res = await fetch(`http://localhost:3000/api/clubs/${id}` , {
+            method: 'DELETE',
+        })
+        setClubs(clubs.filter(club => club.id !== id))
+        if (res.ok) {
+            console.log('Club delted')
+        } else {
+            console.error('Failed to delete club')
+        }
+    } catch (error) {
+        console.error('Error deleting club:', error)
+    }
+}
 
   if(loading) {
     <Loading />
-
   }
 
   if (!loading && singleClub) {
     return (
-      <SingleClub singleClub={singleClub} clearSingleClub={clearSingleClub} />
+      <>
+      <SingleClub singleClub={singleClub} onClose={onClose} deleteClub={deleteClub} editClub={editClub} />
+
+      {showForm && <EditClubModal singleClub={singleClub} setClubs={setClubs} onClose={onClose} />}
+      </>
     )
   }
 
 
-  
-  console.log(clubs);
   return (
     <>
-    <Navbar />
-    <Hero />
+    <Navbar onAddClub={onAddClub} />
+    <Hero onAddClub={onAddClub} />
     <h1 id="clubsSection">Clubs Section</h1>
     <Clubs clubs={clubs} getSingleClub={getSingleClub} />
+    
 
-    {showForm && <ClubForm onAddClub={handleAddClub} />}
+    {showForm && <AddClubModal clubs={clubs} setClubs={setClubs} onClose={onClose} singleClub={singleClub} />}
     </>
   )
 }
