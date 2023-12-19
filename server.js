@@ -10,17 +10,17 @@ const PORT = process.env.PORT
 
 const { Pool } = pkg;
 
-// const pool = new Pool ({
-//   connectionString: dbString
-// })
-
 const pool = new Pool ({
-    user: 'ryanpatino',
-    host: 'localhost',
-    database: 'clubs',
-    password: 'Ryan',
-    port: 5432,
+  connectionString: dbString
 })
+
+// const pool = new Pool ({
+//     user: 'ryanpatino',
+//     host: 'localhost',
+//     database: 'clubs',
+//     password: 'Ryan',
+//     port: 5432,
+// })
 
 const app = express()
 
