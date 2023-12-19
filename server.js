@@ -5,7 +5,7 @@ import dotenv from 'dotenv'
 
 dotenv.config()
 const dbString = process.env.DATABASE_URL
-const PORT = process.env.PORT
+const PORT = process.env.PORT || 3000
 
 
 const { Pool } = pkg;
