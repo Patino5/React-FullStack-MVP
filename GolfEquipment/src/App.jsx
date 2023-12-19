@@ -12,6 +12,7 @@ function App() {
   const [singleClub, setSingleClub] = useState(null)
   const [clubs, setClubs] = useState([])
   const [showForm, setShowForm] = useState(false)
+  const [editForm, setEditForm] = useState(false)
 
 
   const onAddClub = () => {
@@ -26,7 +27,7 @@ function App() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('http://localhost:3000/api/clubs')
+        const res = await fetch('http://localhost:3002/api/clubs')
         if (!res.ok) {
           throw new Error('Network response was not ok');
         }
@@ -45,7 +46,7 @@ function App() {
   
   const getSingleClub = async (id) => {
     try {
-      const res = await fetch(`http://localhost:3000/api/clubs/${id}`);
+      const res = await fetch(`http://localhost:3002/api/clubs/${id}`);
       if (!res.ok) {
         throw new Error('Network response was not ok');
       }
@@ -57,14 +58,12 @@ function App() {
   };
 
   const editClub = async (id) => {
-    console.log(id);
-    setShowForm(true)
-
+    setEditForm(true)
   }
 
   const deleteClub = async (id) => {
     try {
-        const res = await fetch(`http://localhost:3000/api/clubs/${id}` , {
+        const res = await fetch(`http://localhost:3002/api/clubs/${id}` , {
             method: 'DELETE',
         })
         setClubs(clubs.filter(club => club.id !== id))
@@ -87,7 +86,7 @@ function App() {
       <>
       <SingleClub singleClub={singleClub} onClose={onClose} deleteClub={deleteClub} editClub={editClub} />
 
-      {showForm && <EditClubModal singleClub={singleClub} setClubs={setClubs} onClose={onClose} />}
+      {editForm && <EditClubModal singleClub={singleClub} setClubs={setClubs} onClose={onClose} setEditForm={setEditForm} />}
       </>
     )
   }

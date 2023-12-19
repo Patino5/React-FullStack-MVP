@@ -9,7 +9,7 @@ const ClubForm = ({ setClubs }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:3000/api/clubs', {
+      const response = await fetch('http://localhost:3002/api/clubs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -38,23 +38,23 @@ const ClubForm = ({ setClubs }) => {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} id="addForm">
       <label>
         Club Name:
-        <input type="text" required value={clubName} onChange={(e) => setClubName(e.target.value)} />
+        <input id="addName" type="text" required value={clubName} onChange={(e) => setClubName(e.target.value)} />
       </label>
       <br />
       <label>
         Club Type:
-        <input type="text" required value={clubType} onChange={(e) => setClubType(e.target.value)} />
+        <input id="addType" type="text" required value={clubType} onChange={(e) => setClubType(e.target.value)} />
       </label>
       <br />
       <label>
         Brand Name:
-        <input type="text" required value={brandName} onChange={(e) => setBrandName(e.target.value)} />
+        <input id="addBrand" type="text" required value={brandName} onChange={(e) => setBrandName(e.target.value)} />
       </label>
       <br />
-      <button type="submit">Add Club</button>
+      <button id="addSubmit" type="submit">Add Club</button>
     </form>
   )
 }
