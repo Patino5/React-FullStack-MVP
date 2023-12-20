@@ -9,7 +9,7 @@ const ClubForm = ({ setClubs }) => {
     e.preventDefault();
 
     try {
-      const response = await fetch('/api/clubs', {
+      const response = await fetch('https://myclubcaddie.onrender.com/api/clubs', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

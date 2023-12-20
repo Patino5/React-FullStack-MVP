@@ -11,7 +11,7 @@ const EditClubModal = ({ onClose, setClubs, singleClub, setEditForm }) => {
         e.preventDefault()
 
         try { 
-            const response = await fetch(`/api/clubs/${singleClub.id}`, {
+            const response = await fetch(`https://myclubcaddie.onrender.com/api/clubs/${singleClub.id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
