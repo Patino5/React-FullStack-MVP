@@ -6,6 +6,7 @@ import Hero from './components/Hero'
 import EditClubModal from './components/EditClubModal'
 import SingleClub from './components/SingleClub'
 import AddClubModal from './components/AddClubModal'
+import Footer from './components/Footer'
 
 function App() {
   const [loading, setLoading] = useState(true)
@@ -99,7 +100,7 @@ function App() {
     <Hero onAddClub={onAddClub} />
     <h1 id="clubsSection">Clubs Section</h1>
     <Clubs clubs={clubs} getSingleClub={getSingleClub} />
-    
+    <Footer />
     
 
     {showForm && <AddClubModal clubs={clubs} setClubs={setClubs} onClose={onClose} singleClub={singleClub} />}
