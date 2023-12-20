@@ -21,6 +21,7 @@ function App() {
 
   const onClose = () => {
     setShowForm(false)
+    setEditForm(false)
     setSingleClub(null)
   }
 
@@ -98,6 +99,7 @@ function App() {
     <Hero onAddClub={onAddClub} />
     <h1 id="clubsSection">Clubs Section</h1>
     <Clubs clubs={clubs} getSingleClub={getSingleClub} />
+    
     
 
     {showForm && <AddClubModal clubs={clubs} setClubs={setClubs} onClose={onClose} singleClub={singleClub} />}
