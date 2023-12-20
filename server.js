@@ -3,6 +3,11 @@ import pkg from 'pg'
 import cors from 'cors'
 import dotenv from 'dotenv'
 import path from 'path'
+// const express = require('express')
+// const {Pool} = require('pg')
+// const dotenv = require('dotenv')
+// const cors = require('cors')
+// const path = require('path')
 
 dotenv.config()
 const dbString = process.env.DATABASE_URL
@@ -27,7 +32,7 @@ const app = express()
 
 app.use(cors())
 app.use(express.json())
-app.use(express.static(path.join(__dirname, 'dist')))
+app.use(express.static(path.join('dist')))
 
 // Get all Clubs 
 app.get('/api/clubs', async (req, res) => {
@@ -114,11 +119,6 @@ app.delete('/api/clubs/:id', async (req, res) => {
       res.status(500).json({ error: error.message })
     }
   })
-
-  app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
-  });
-
 
 // listener
 app.listen(PORT, () => {
