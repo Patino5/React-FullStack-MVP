@@ -2,6 +2,7 @@ import express from 'express'
 import pkg from 'pg'
 import cors from 'cors'
 import dotenv from 'dotenv'
+import path from 'path'
 
 dotenv.config()
 const dbString = process.env.DATABASE_URL
@@ -113,6 +114,11 @@ app.delete('/api/clubs/:id', async (req, res) => {
       res.status(500).json({ error: error.message })
     }
   })
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'dist', 'index.html'));
+  });
+
 
 // listener
 app.listen(PORT, () => {
